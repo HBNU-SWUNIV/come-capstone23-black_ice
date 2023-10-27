@@ -5,6 +5,8 @@
 - 20171589 오윤성
 - 20207119 김현태
 - 20201725 김나희
+- 20191749 이현정
+
 
 ## 구성 환경
     Model : NVIDIA Jetson Nano Developer Kit
