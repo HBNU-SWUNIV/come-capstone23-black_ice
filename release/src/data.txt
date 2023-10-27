@@ -1,0 +1,18 @@
+#xptmxm
+#한글주석, open(file_path, 'r', encoding='UTF8') 로 반드시 utf-8 인코딩 써줘야 함
+
+DEVICE = AAA
+
+DATA_PATH = data/
+
+##############################################################################################################
+# 하드코딩 가능성 주의 (STN = 548 은 여주지역임)
+# 이거 기상예측할때 쓰이는거랑 다른거니까 주의해서 지역 맞춰야함
+##############################################################################################################
+STN = 548
+
+# 기상관측 키
+API_KEY = aaZrhx_QRmyma4cf0PZsug
+
+# 기상예측 키
+API_KEY2 = eqTbu5tgsBlxHlliXVpp4A6FZyGJCS6ct%2FQWVPZuhRy3x05IGhAHlr0U9b%2B4qPEUNfrWVf2n5FtdffkCi33MQg%3D%3D

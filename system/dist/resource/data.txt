@@ -1,0 +1,10 @@
+#xptmxm
+#한글주석
+
+DEVICE = AAA
+
+DATA_PATH = data/
+
+STN = 548
+API_KEY = aaZrhx_QRmyma4cf0PZsug
+API_KEY2 = eqTbu5tgsBlxHlliXVpp4A6FZyGJCS6ct%2FQWVPZuhRy3x05IGhAHlr0U9b%2B4qPEUNfrWVf2n5FtdffkCi33MQg%3D%3D

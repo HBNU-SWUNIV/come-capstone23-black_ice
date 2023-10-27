@@ -1,0 +1,223 @@
+RASPBERRYPI
+
+[pi λ 192.168.219.102:~] sudo passwd root
+
+[pi λ 192.168.219.102:~] su -
+ 
+ 
+[OS]
+
+[root λ 192.168.219.102:~] cat /etc/os-release
+PRETTY_NAME="Raspbian GNU/Linux 10 (buster)"
+NAME="Raspbian GNU/Linux"
+VERSION_ID="10"
+VERSION="10 (buster)"
+VERSION_CODENAME=buster
+ID=raspbian
+ID_LIKE=debian
+HOME_URL="http://www.raspbian.org/"
+SUPPORT_URL="http://www.raspbian.org/RaspbianForums"
+BUG_REPORT_URL="http://www.raspbian.org/RaspbianBugs"
+
+[HW] if not installed lshw -> apt install lshw
+
+[root λ 192.168.219.102:~] lshw -short
+H/W path    Device  Class      Description
+==========================================
+                    system     Raspberry Pi 4 Model B Rev 1.2
+/0                  bus        Motherboard
+/0/1                processor  cpu
+/0/2                processor  cpu
+/0/3                processor  cpu
+/0/4                processor  cpu
+/0/5                memory     3838MiB System memory
+/0/0                bridge     Broadcom Limited
+/0/0/0              bus        VL805 USB 3.0 Host Controller
+/0/0/0/0    usb1    bus        xHCI Host Controller
+/0/0/0/0/1          bus        USB2.0 Hub
+/0/0/0/1    usb2    bus        xHCI Host Controller
+/1          eth0    network    Ethernet interface
+/2          wlan0   network    Wireless interface
+
+
+
+//
+//
+//
+
+[INSTALL]
+
+[root λ 192.168.219.102:~] apt update
+[root λ 192.168.219.102:~] apt upgrade
+[root λ 192.168.219.102:~] apt reboot
+
+
+
+[root λ 192.168.219.102:~] mkdir /webservice
+[root λ 192.168.219.102:~] chown pi.pi /webservice/
+
+[root λ 192.168.219.102:~] 
+
+[SUPERVISOR] apt install supervisor
+[root λ 192.168.219.102:~] vi /etc/supervisor/conf.d/qdaemon.conf
+
+[program:qdaemon]
+
+process_name=%(program_name)s_%(process_num)02d
+directory=/webservice/daemons
+command=/webservice/daemons/qdaemon
+autostart=true
+autorestart=true
+user=qio
+startretries=1024
+#numprocs=1
+#redirect_stderr=true
+stdout_logfile=/webservice/daemons/logs/qdaemon.log
+stderr_logfile=/webservice/daemons/logs/qdaemon.err
+
+
+[root λ 192.168.219.102:~] 
+
+
+[root λ 192.168.219.102:~] vi /etc/rsyslog.d/50-cdaemon.conf
+
+local0.* /var/log/daemons/cdaemon.log
+
+
+[root λ 192.168.219.102:~] 
+
+
+[REDIS] apt install redis
+
+[REDIS C LIB] apt install libhiredis-dev
+
+[POSTGRESQL] apt install postgresql
+
+sudo -u postgres psql
+
+postgres=# CREATE USER pi PASSWORD '1234';
+
+postgres=# CREATE DATABASE innoroad;
+postgres=# ALTER DATABASE innoroad OWNER TO pi;
+
+postgres=# \l;
+
+postgres=# \c innoroad;
+
+postgres=# \d;
+
+postgres=# \q;
+
+
+
+[ECLIPSE/PAHO.MQTT.C LIB]
+[root λ 192.168.219.102:~/c] git clone https://github.com/eclipse/paho.mqtt.c.git
+[root λ 192.168.219.102:~/c] cd paho.mqtt.c/
+[root λ 192.168.219.102:~/c] make
+[root λ 192.168.219.102:~/c] make install
+[root λ 192.168.219.102:~/c] ls -la /usr/;ocal/lib
+
+[UUID C LIB] apt install uuid-dev
+
+[DOTENV C LIB]
+
+[root λ 192.168.219.102:~/c] git clone https://github.com/Isty001/dotenv-c
+[root λ 192.168.219.102:~/c] cd dotenv-c/
+첨부파일 dotenv.c 를 src/dotenv.c에 덮어쓰기한후
+
+[root λ 192.168.219.102:~/c/dotenv-c] make
+
+
+[JSON C LIB]
+
+[root λ 192.168.219.102:~/c] git clone https://github.com/json-c/json-c.git
+[root λ 192.168.219.102:~/c] cd json-c/
+[root λ 192.168.219.102:~/c] mkdir json-c-build
+[root λ 192.168.219.102:~/c] cd json-c-build
+[root λ 192.168.219.102:~/c] cmake ../
+[root λ 192.168.219.102:~/c] make
+[root λ 192.168.219.102:~/c] make install
+
+
+
+//
+//
+//
+
+[DOT ENV]
+
+[pi λ 192.168.219.102:~] mkdir /webservice/daemons
+[pi λ 192.168.219.102:~] mkdir /webservice/daemons/logs
+
+[pi λ 192.168.219.102:~] vi /webservice/.env.innoroad
+
+#--------------------------------------------------------------------
+# ENVIRONMENT
+#--------------------------------------------------------------------
+
+# ENVIRONMENT = production
+ENVIRONMENT = development
+
+
+
+#--------------------------------------------------------------------
+# APP
+#--------------------------------------------------------------------
+
+
+
+
+#--------------------------------------------------------------------
+# DEVICE
+#--------------------------------------------------------------------
+
+device.id = DCA632851AE2.20230812
+
+
+
+#--------------------------------------------------------------------
+# MQTT
+#--------------------------------------------------------------------
+
+mqtt.ip = 175.207.12.148
+mqtt.port = 1883
+mqtt.topic = innoroad
+
+
+
+#--------------------------------------------------------------------
+# DATABASE
+#--------------------------------------------------------------------
+
+#database.default.DSN		= 'DBDriver://username:password@hostname:port/database'
+database.default.hostname	= localhost
+database.default.database	= innoroad
+database.default.username	= pi
+database.default.password	= 1234
+database.default.DBDriver	= Postgre
+database.default.DBPrefix	=
+database.default.schema		= 
+database.default.pConnect	= false
+#database.default.DBDebug	= ${CI_ENVIRONMENT} !== production
+database.default.charset	= utf8
+database.default.DBCollat	= utf8_unicode_ci
+database.default.swapPre	= 
+database.default.timeout	= 0
+database.default.encrypt	= false
+database.default.compress	= false
+database.default.strictOn	= true
+#database.default.failover	= []
+database.default.port		= 5432
+
+
+
+#--------------------------------------------------------------------
+# API Key
+#--------------------------------------------------------------------
+
+
+
+[pi λ 192.168.219.102:~] 
+
+
+
