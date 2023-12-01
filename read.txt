@@ -1,0 +1,1 @@
+python main_module_onlytest.py --collect collection.conf --database database.conf --frost frost.conf --power path --cycle_minute 1

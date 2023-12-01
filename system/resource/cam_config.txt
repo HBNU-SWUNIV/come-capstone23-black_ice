@@ -1,4 +1,0 @@
-left_top=371.0,346.0
-right_top=665.0,357.0
-left_bottom=368.0,530.0
-right_bottom=674.0,531.0

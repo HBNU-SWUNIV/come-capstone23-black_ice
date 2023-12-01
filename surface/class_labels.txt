@@ -1,3 +1,0 @@
-{0: 'dry'
- 1: 'water'
- 2: 'frozen'}

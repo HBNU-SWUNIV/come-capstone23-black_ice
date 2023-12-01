@@ -1,0 +1,28 @@
+python version : 3.6.8
+
+
+
+--측정 결과--
+class name : LGBMRegressor
+
+학습 시간 : 0.097초
+예측 시간 : 0.008초
+정확도 : 0.948
+
+
+--측정 결과--
+class name : XGBRegressor
+
+학습 시간 : 0.508초
+예측 시간 : 0.006초
+정확도 : 0.956
+
+
+--측정 결과--
+class name : DecisionTreeRegressor
+
+학습 시간 : 0.093초
+예측 시간 : 0.003초
+정확도 : 0.932
+
+

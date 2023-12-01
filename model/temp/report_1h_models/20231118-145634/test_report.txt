@@ -1,0 +1,28 @@
+python version : 3.6.8
+
+
+
+--측정 결과--
+class name : LGBMClassifier
+
+학습 시간 : 0.276초
+예측 시간 : 0.023초
+정확도 : 0.964
+
+
+--측정 결과--
+class name : XGBClassifier
+
+학습 시간 : 1.538초
+예측 시간 : 0.013초
+정확도 : 0.965
+
+
+--측정 결과--
+class name : DecisionTreeClassifier
+
+학습 시간 : 0.072초
+예측 시간 : 0.002초
+정확도 : 0.951
+
+
