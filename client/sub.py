@@ -2,14 +2,14 @@ import paho.mqtt.client as mqtt #pip install paho-mqtt
 import json
 
 
-mqtt_scheme = "tcp"  # 프로토콜 선택 (mqtt 또는 tcp)
-mqtt_host = "121.124.124.20"  # 브로커 주소
-mqtt_port = 1883  # 브로커 포트
-mqtt_topic = "innoroad"  # 기본 토픽 설정
+mqtt_scheme = "***"  # 프로토콜 선택 (mqtt 또는 tcp)
+mqtt_host = "***.***.***.***"  # 브로커 주소
+mqtt_port = ****  # 브로커 포트
+mqtt_topic = "********"  # 기본 토픽 설정
 mqtt_qos = 1  # QoS 레벨 설정
-mqtt_topics_vector = 'innoroad/#'  # 벡터 토픽 설정
-mqtt_username = "sjmqtt"  # 사용자명
-mqtt_password = "sj9337700mqtt"  # 비밀번호
+mqtt_topics_vector = '*********#'  # 벡터 토픽 설정
+mqtt_username = "*********"  # 사용자명
+mqtt_password = "*************************"  # 비밀번호
 
 
 def on_connect(client, userdata, flags, rc):

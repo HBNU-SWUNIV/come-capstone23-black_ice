@@ -7,9 +7,9 @@ import threading
 import time
 
 # 브로커 설정
-broker_address = "121.124.124.20"
-port = 1883
-topic = "innoroad/window/pub_test"
+broker_address = "***.***.***.***"
+port = ****
+topic = "************************"
 
 # 새로운 클라이언트 생성
 client = mqtt.Client()
